@@ -1,0 +1,154 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calculator</title>
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Open+Sans&display=swap"
+            rel="stylesheet">
+        <!-- Import Bootstrap Icon -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <!-- ALL MIN CSS -->
+        <link rel="stylesheet" href="assets/css/all.min.css">
+        <!-- File Normalization -->
+        <link rel="stylesheet" href="assets/css/normalize.css">
+        <!-- Import CSS Files -->
+       <style>
+        * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    background-color: powderblue;
+}
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.calc {
+    background-color: #354253;
+    padding: 20px;
+    border-radius: 10px;
+    border: 3px solid #66a19b;
+}
+form .display {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0;
+}
+form .display input {
+    border: none;
+    outline: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #fff;
+    margin: 10px;
+    cursor: pointer;
+    background: transparent;
+    text-align: right;
+    flex: 1;
+}
+.calc form .num button {
+    border: none;
+    outline: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
+    font-size: 20px;
+    color: #fff;
+    margin: 10px;
+    cursor: pointer;
+}
+form .num button.equal {
+    background-color: #fb7c14;
+    box-shadow: none;
+}
+form .num button.operator {
+    color: aqua;
+}
+form .num button:hover:not(.equal) {
+    color: aqua;
+}
+form .num button:active {
+    background-color: black;
+    transform: translate(2px, 2px);
+}
+       </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="calc">
+                <form>
+                    <div class="display">
+                        <input type="text" id="inputBox">
+                    </div>
+                    <div class="num">
+                        <div>
+                            <button type="button" class="operator">AC</button>
+                            <button type="button" class="operator">DEL</button>
+                            <button type="button" class="operator">%</button>
+                            <button type="button" class="operator">/</button>
+                        </div>
+                        <div>
+                            <button type="button">7</button>
+                            <button type="button">8</button>
+                            <button type="button">9</button>
+                            <button type="button" class="operator">*</button>
+                        </div>
+                        <div>
+                            <button type="button">4</button>
+                            <button type="button">5</button>
+                            <button type="button">6</button>
+                            <button type="button" class="operator">-</button>
+                        </div>
+                        <div>
+                            <button type="button">1</button>
+                            <button type="button">2</button>
+                            <button type="button">3</button>
+                            <button type="button" class="operator">+</button>
+                        </div>
+                        <div>
+                            <button type="button">00</button>
+                            <button type="button">0</button>
+                            <button type="button">.</button>
+                            <button type="button" class="equal">=</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script >let inputBox = document.getElementById('inputBox');
+            let buttons = document.querySelectorAll('button');
+            
+            let string = "";
+            buttons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    if(e.target.innerText == '=') {
+                        string = String(eval(string));
+                        inputBox.value = string;
+                    } else if(e.target.innerText == 'AC') {
+                        string = "";
+                        inputBox.value = string;
+                    } else if(e.target.innerText == 'DEL') {
+                        string = string.substring(0,string.length - 1);
+                        inputBox.value = string;
+                    }
+                    else {
+                        string += e.target.innerText;
+                        inputBox.value = string;
+                    }
+                });
+            });</script>
+    </body>
+</html>
